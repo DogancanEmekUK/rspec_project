@@ -13,12 +13,12 @@ RSpec.describe Track_List do
             track.add("Hans Zimmer - Cornfields")
             expect(track.show()).to eq ["Metallica - Nothing Else Matters", "Hans Zimmer - Cornfields"]
         end
-        it "identifies if the track is already on the list" do
-            track = Track_List.new
-            track.add("Metallica - Nothing Else Matters")
-            result = track.add("Metallica - Nothing Else Matters")
-            expect(result).to eq "This song is already on the list"
-        end
+        #it "identifies if the track is already on the list" do
+            #track = Track_List.new
+            #track.add("Metallica - Nothing Else Matters")
+            #result = track.add("Metallica - Nothing Else Matters")
+            #expect(result).to eq "#{track} is already on the list"
+        #end
     end
     context "when there isn't a song" do
         it "fails when there isn't a song" do
