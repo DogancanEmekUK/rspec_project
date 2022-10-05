@@ -2,16 +2,37 @@ require 'todo'
 require 'todo_list'
 
 RSpec.describe "integration" do
-    it "Adds the given task to the todo list" do
-        new_task = TodoList.new
-        todo = Todo.new("Do your homework")
-        expect(new_task.add(todo.task)).to eq ["#TODO Do your homework"]
+    it "adds the thing to do to the list" do
+        new_todo_list = TodoList.new
+        thing_todo_one = Todo.new("homework")
+        result = new_todo_list.add(thing_todo_one.task)
+        expect(result).to eq ["#TODO homework"]
     end
-    it "Returns all incomplete tasks" do
-        new_task = TodoList.new
-        todo_one = Todo.new("Do your homework")
-        new_task.add(todo_one.task)
-        todo_one.mark_done!
-        expect(new_task.incomplete).to eq []
+    it "returns the list of incompleted tasks" do
+        new_todo_list = TodoList.new
+        thing_todo_one = Todo.new("homework")
+        thing_todo_two = Todo.new("cleaning")
+        new_todo_list.add(thing_todo_one.task)
+        new_todo_list.add(thing_todo_two.mark_done!)
+        result = new_todo_list.incomplete
+        expect(result).to eq ["#TODO homework"]
+    end
+    it "returns the list of completed tasks" do
+        new_todo_list = TodoList.new
+        thing_todo_one = Todo.new("homework")
+        thing_todo_two = Todo.new("cleaning")
+        new_todo_list.add(thing_todo_one.task)
+        new_todo_list.add(thing_todo_two.mark_done!)
+        result = new_todo_list.complete
+        expect(result).to eq ["#DONE cleaning"]
+    end
+    it "marks all tasks as complete" do
+        new_todo_list = TodoList.new
+        thing_todo_one = Todo.new("homework")
+        thing_todo_two = Todo.new("cleaning")
+        new_todo_list.add(thing_todo_one.task)
+        new_todo_list.add(thing_todo_two.task)
+        result = new_todo_list.give_up!
+        expect(result).to eq ["#DONE homework", "#DONE cleaning"]
     end
 end

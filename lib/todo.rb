@@ -2,30 +2,32 @@ class Todo
     def initialize(task) # task is a string
       # ...
       @task = task
-      @string = ""
+      @label = ""
       @task_condition = ""
     end
   
     def task
       # Returns the task as a string
-      @string = "#TODO"
-      return @task_condition = "#{@string} #{@task}"
+      @label = "#TODO"
+      @task_condition = "#{@label} #{@task}"
+      return @task_condition
     end
   
     def mark_done!
       # Marks the todo as done
       # Returns nothing
-      @string = "#DONE"
-      @task_condition = "#{@string} #{@task}"
+      @label = "#DONE"
+      @task_condition = "#{@label} #{@task}"
+      return @task_condition
     end
   
     def done?
       # Returns true if the task is done
       # Otherwise, false
-      if (@task_condition.include?("#TODO"))
-        return false
-      else
+      if (@task_condition.include?("#DONE"))
         return true
+      else
+        return false
       end
     end
 end

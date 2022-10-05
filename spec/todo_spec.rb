@@ -1,16 +1,15 @@
 require 'todo'
 
 RSpec.describe Todo do
-    it "Returns the task as a string" do
-        todo = Todo.new("Do your homework")
-        expect(todo.task).to eq ("#TODO Do your homework")
+    it "returns the task as a string" do
+        thing_todo = Todo.new("homework")
+        result = thing_todo.task
+        expect(result).to eq "#TODO homework"
     end
-    it "Marks the task as done" do
-        todo = Todo.new("Do your homework")
-        expect(todo.mark_done!).to eq ("#DONE Do your homework")
-    end
-    it "Returns true if the task is done" do
-        todo = Todo.new("Do your homework")
-        expect(todo.done?).to eq true
+    it "returns true if the task is done" do
+        thing_todo = Todo.new("homework")
+        thing_todo.mark_done!
+        result = thing_todo.done?
+        expect(result).to eq true
     end
 end
