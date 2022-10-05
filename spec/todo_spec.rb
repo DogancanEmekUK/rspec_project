@@ -1,18 +1,16 @@
 require 'todo'
 
-RSpec.describe To_do do
-    it "successfully returns true when there's a #TODO inside the string" do
-        todo = To_do.new
-        result = todo.check_task("#TODO do your homework")
-        expect(result).to eq true
+RSpec.describe Todo do
+    it "Returns the task as a string" do
+        todo = Todo.new("Do your homework")
+        expect(todo.task).to eq ("#TODO Do your homework")
     end
-    it "successfully returns false when there isn't a #TODO inside the string" do
-        todo = To_do.new
-        result = todo.check_task("do your homework")
-        expect(result).to eq false
+    it "Marks the task as done" do
+        todo = Todo.new("Do your homework")
+        expect(todo.mark_done!).to eq ("#DONE Do your homework")
     end
-    it "returns an error when the string is empty" do
-        todo = To_do.new
-        expect { todo.check_task("") }.to raise_error "Incorrect value"
+    it "Returns true if the task is done" do
+        todo = Todo.new("Do your homework")
+        expect(todo.done?).to eq true
     end
 end
